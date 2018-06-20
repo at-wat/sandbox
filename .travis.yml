@@ -1,19 +1,13 @@
 dist: trusty
-sudo: required
-language: c
-compiler: gcc
-script:
-- echo "test file" > /tmp/test.txt
-before_deploy:
-- zip -q /tmp/yp-spur.run-test.win32.deploy-test-cmake-ver.zip -r /tmp/test.txt
-- zip -q /tmp/yp-spur-samples.win32.deploy-test-cmake-ver.zip -r /tmp/test.txt
+sudo: false
+language: bash
+addons:
+  apt:
+    packages:
+    - python-pip
 
-deploy:
-  provider: releases
-  api_key:
-    secure: DQKd/H3yXCtC3L09XyQ3MxnAHqTC1XQ+Pr/9h0FbqaUFNo72ATf54gZdhT8r8xNCsbPReiGXYYGza6TX0eluc76F1INpWjJttvOb8mp1yF+PXWlX8DGRL2qHyyXUQb+VMfKjCW8BPsRYvtXeoE77NmDCsQOOYCY1GlOVfuRUXyvwOiOwFpUkvyxyTOkJjWxki+SuhLnUK/oTmosvHJo5NZXSOts/Yb6RbPKrVm5D08oaKR4PNvbIztDgzsItpomxFi8gZaxR9J+pRE+GOe1OgSXzsEGxxtSKxpj2TSKMLcQ8wJJkeOTbXPnWyzNls6c/MLdUsn3DJIpQKVCSQUgVHTGk/HP6LvqnQ1kjRVHVZ10gfzbiFkyxVQQskgzD22gakKNZEu8aNRrE5dRkpDslg+cY9X844/war1e8QPKUZATiph6PFfKC5bxJKg6nQUJUHEK2bUXcReNA61h2CgLK7vebz3q/JH7KePNKA0hDb+eqoqarrdnia2+bG8XH7W5gUTsOIV/tumc5hhWlKLwyoCGH4x2xDxlSpj+lkE4y2KRxvEx5K/fKR8OkylVd2gF136Gt3cb+8941JgGRrOj7LdjA785DorP1fKGE+kfOJaeyTpZQbOxCPhAAd15WUBs3ROZgVn0YSat9F8tWiTsKRnzm93J4WjyRFmfDhjSC5fI=
-  file:
-    - /tmp/yp-spur.run-test.win32.deploy-test-cmake-ver.zip
-    - /tmp/yp-spur-samples.win32.deploy-test-cmake-ver.zip
-  on:
-    tags: true
+script:
+- pip install --user gh-pr-comment
+- sleep 20
+- echo "test file" > /tmp/test.txt
+- gh-pr-comment "Bot comment" "Test comment body."
