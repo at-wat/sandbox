@@ -1,7 +1,13 @@
 dist: trusty
-sudo: required
-language: c
-compiler: gcc
+sudo: false
+language: bash
+addons:
+  apt:
+    packages:
+    - python-pip
+
 script:
+- pip install --user gh-pr-comment
 - sleep 60
 - echo "test file" > /tmp/test.txt
+- gh-pr-comment "Bot comment" "Test comment body."
