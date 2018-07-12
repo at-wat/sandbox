@@ -8,6 +8,6 @@ addons:
 
 script:
 - pip install --user gh-pr-comment
-- sleep 20
+- sleep 60
 - echo "test file" > /tmp/test.txt
 - gh-pr-comment "Bot comment" "Test comment body."
