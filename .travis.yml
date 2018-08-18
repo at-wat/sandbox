@@ -5,7 +5,6 @@ env: PYTHON_INSTALLER=brew
 install:
   - python --version
   - pip install PyYAML argparse rospkg vcstools catkin_pkg python-dateutil rosdistro
-  - pip install -e .
   - pip install nose coverage flake8 mock codecov
   - which nosetests
   - nosetests
