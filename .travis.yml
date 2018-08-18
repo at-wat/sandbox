@@ -1,13 +1,10 @@
-dist: trusty
-sudo: false
-language: bash
-addons:
-  apt:
-    packages:
-    - python-pip
+os: osx
+language: generic
+env: PYTHON_INSTALLER=brew
 
-script:
-- pip install --user gh-pr-comment
-- sleep 60
-- echo "test file" > /tmp/test.txt
-- gh-pr-comment "Bot comment" "Test comment body."
+install:
+  - python --version
+  - pip install PyYAML argparse rospkg vcstools catkin_pkg python-dateutil rosdistro
+  - pip install nose coverage flake8 mock codecov
+  - which nosetests
+  - nosetests
