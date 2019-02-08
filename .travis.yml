@@ -14,6 +14,7 @@ script:
 
 before_deploy:
 - export ENV_VAR_TEST=testing123
+- false
 
 deploy:
   provider: script
