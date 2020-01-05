@@ -1,1 +1,1 @@
-Trying to push change to the protected master
+This is a test data deployed by assets-sync-action.
