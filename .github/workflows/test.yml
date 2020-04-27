@@ -1,0 +1,24 @@
+name: test
+on:
+  push:
+    branches:
+      - testing-token
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - name: test
+        run: |
+          cat .git/config
+          git config user.name "test"
+          git config user.email "test@test.dummy"
+          git checkout -b testing-temporary
+          touch dummy
+          git add dummy
+          git commit -m "Testing"
+          git push origin testing-temporary
