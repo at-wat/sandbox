@@ -2,5 +2,5 @@ dist: focal
 language: go
 
 script:
-  - go test . -v -cover
+  - go test . -v -cover -coverprofile=cover.out
   - bash <(curl -s https://codecov.io/bash)
