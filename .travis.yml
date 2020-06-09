@@ -1,23 +1,6 @@
-dist: trusty
-sudo: false
-language: bash
-addons:
-  apt:
-    packages:
-    - python-pip
+dist: focal
+language: go
 
 script:
-- pip install --user gh-pr-comment
-- sleep 10
-- echo "test file" > /tmp/test.txt
-- gh-pr-comment "Bot comment" "Test comment body."
-
-before_deploy:
-- export ENV_VAR_TEST=testing123
-
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: echo "ENV_VAR_TEST is ${ENV_VAR_TEST}"
-  on:
-    branch: master
+  - go test . -v -cover
+  - bash <(curl -s https://codecov.io/bash)
